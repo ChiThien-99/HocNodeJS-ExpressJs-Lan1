@@ -3,84 +3,109 @@ $colorPrimaryBG: #fafafa;
 $colorSecondaryBG: #027e1fad;
 $colorPrimaryText: #1a1a1a;
 $colorSecondaryText: #fafafa;
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-header{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    div:first-child a{
-        text-decoration: none;
-        color: $colorCTA;
-        font-size: 50px;
-        display: inline-block;
-        padding: 3px;
-        border: 7px double $colorCTA;
-        border-radius: 5px;
-    }
-    div:last-child a{
-        text-decoration: none;
-        display:inline-block;
-        padding: 15px;
-        margin: 10px;
-        background-color: $colorCTA;
-        color: $colorSecondaryText;
-        cursor: pointer;
-        font-weight: bold;
-        border-radius: 5px;
-    }
+body {
+  background-color: $colorPrimaryBG;
 }
-main{
-    #products{
-        width: 70%;
-        margin: auto;
-        .itemProduct{
-            width: 100%;
-            height: 150px;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            background-color: $colorSecondaryBG;
-            margin: 10px;
-            padding: 10px;
-            cursor: pointer;
-            img{
-                width: 100px;
-                height: 100px;
-            }
-            div:last-child{
-                width: 30%;
-                p{
-                color: $colorSecondaryText;
-                font-size: 20px;
-                text-align: start;
-            }
-            }
-            
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  div:first-child a {
+    text-decoration: none;
+    color: $colorCTA;
+    font-size: 50px;
+    display: inline-block;
+    padding: 3px;
+    border: 7px double $colorCTA;
+    border-radius: 5px;
+  }
+  div:last-child a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px;
+    margin: 10px;
+    background-color: $colorCTA;
+    color: $colorSecondaryText;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+}
+main {
+  #products {
+    width: 70%;
+    margin: auto;
+    .itemProduct {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      background-color: $colorSecondaryBG;
+      margin: 10px;
+      padding: 10px;
+      cursor: pointer;
+      img {
+        width: 100px;
+        height: 100px;
+      }
+      div:last-child {
+        width: 30%;
+        p {
+          color: $colorSecondaryText;
+          font-size: 20px;
+          text-align: start;
         }
+      }
     }
-    #detailProduct{
-        width: 70%;
-        margin: auto;
-        img{
-            width: 50%;
-            height: auto;
-            margin: inherit;
-        }
-        #btnUpdateProduct{
-            background-color: $colorCTA;
-            color: $colorSecondaryText;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #btnDeleteProduct{
-            background-color: red;
-            color: $colorSecondaryText;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
+  }
+  #detailProduct {
+    width: 70%;
+    margin: auto;
+    img {
+      width: 50%;
+      height: auto;
+      margin: inherit;
     }
+    #btnUpdateProduct {
+      background-color: $colorCTA;
+      color: $colorSecondaryText;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #btnDeleteProduct {
+      background-color: red;
+      color: $colorSecondaryText;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+  #formCreateProduct {
+    width: 70%;
+    margin: auto;
+    input {
+      width: 100%;
+      height: 40px;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: $colorSecondaryBG;
+      color: $colorSecondaryText;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
 }

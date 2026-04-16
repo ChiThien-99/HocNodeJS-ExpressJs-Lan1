@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1><a href="#">IMZ.AI</a></h1>
+      </div>
+      <div>
+        <a href="/products">Home</a>
+        <a href="/products/create">Create</a>
+      </div>
+    </header>
+    <main>
+      <div id="formCreateProduct">
+        <input
+          type="text"
+          id="inpNameProduct"
+          placeholder="Điền tên sản phẩm"
+          autocomplete="on"
+        /><br />
+        <input
+          type="text"
+          id="inpPriceProduct"
+          placeholder="Điền giá sản phẩm"
+          autocomplete="on"
+        /><br />
+        <input
+          type="text"
+          id="inpImgProduct"
+          placeholder="Điền hình ảnh sản phẩm"
+          autocomplete="on"
+        /><br />
+        <input
+          type="text"
+          id="inpCategoryProduct"
+          placeholder="Điền danh mục sản phẩm"
+          autocomplete="on"
+        /><br />
+        <button id="btnSubmit">Tạo sản phẩm</button>
+      </div>
+    </main>
+  </body>
+  <script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    const { id } = params;
+    const inpNameProduct = document.getElementById("inpNameProduct");
+    const inpPriceProduct = document.getElementById("inpPriceProduct");
+    const inpImgProduct = document.getElementById("inpImgProduct");
+    const inpCategoryProduct = document.getElementById("inpCategoryProduct");
+    const fetchDetailProductByApi = () => {
+      fetch(`http://localhost:3000/api/products/detail/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json;charset=UTF-8",
+        },
+      })
+        .then((res) => res.json())
+        .then(({ data, message, code }) => {
+          if (code == 200) {
+            ((inpNameProduct.value = data.name),
+              (inpPriceProduct.value = data.price),
+              (inpImgProduct.value = data.image),
+              (inpCategoryProduct.value = data.category.id));
+          }
+        });
+    };
+    fetchDetailProductByApi();
+    document.getElementById("btnSubmit").addEventListener("click", () => {
+      const body = JSON.stringify({
+        name: inpNameProduct.value,
+        price: inpPriceProduct.value,
+        image: inpImgProduct.value,
+        category: inpCategoryProduct.value,
+      });
+      if (id) {
+        fetch(`http://localhost:3000/products/update/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json;charset=UTF-8",
+          },
+          body,
+        })
+          .then((res) => res.json())
+          .then(({ code }) => {
+            if (code == 200) {
+              window.location.href = "/products";
+            }
+          });
+      } else {
+        fetch("http://localhost:3000/products/create", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json;charset=UTF-8",
+          },
+          body,
+        })
+          .then((res) => res.json())
+          .then(({ code }) => {
+            if (code == 200) {
+              window.location.href = "/products";
+            }
+          });
+      }
+    });
+  </script>
+</html>

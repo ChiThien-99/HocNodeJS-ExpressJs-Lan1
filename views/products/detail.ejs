@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Chi tiết sản phẩm</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div>
-            <h1><a href="#">IMZ.AI</a></h1>
-        </div>
-        <div>
-            <a href="#">Home</a>
-            <a href="#">Create</a>
-        </div>
+      <div>
+        <h1><a href="#">IMZ.AI</a></h1>
+      </div>
+      <div>
+        <a href="/products">Home</a>
+        <a href="/products/create">Create</a>
+      </div>
     </header>
     <main>
-       <div id="detailProduct">
+      <div id="detailProduct">
         <h2><%=product.name%></h2>
         <p><%=product.price%></p>
-        <img src="<%=product.image%>" alt="<%=product.name%>"><br>
-        <button id="btnUpdateProduct">Cập nhật</button>
+        <img src="<%=product.image%>" alt="<%=product.name%>" /><br />
+        <button
+          id="btnUpdateProduct"
+          onclick="window.location.href = '/products/create?id=<%=product.id%>'"
+        >
+          Cập nhật
+        </button>
         <button id="btnDeleteProduct">Xóa</button>
-       </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>
