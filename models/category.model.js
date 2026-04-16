@@ -1,0 +1,12 @@
+const mongoose=require("mongoose");
+const categorySchema=mongoose.Schema({
+    name:{
+        type:String,
+        required:true,
+    },
+    product:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"productEntity",
+    }
+});
+module.exports=mongoose.model("categoryEntity",categorySchema,"category");
