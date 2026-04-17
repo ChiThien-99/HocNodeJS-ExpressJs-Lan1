@@ -14,7 +14,7 @@ exports.getDetailProductsById = async (req, res) => {
   res.render("products/detail", { product });
 };
 exports.createProduct = (req, res) => {
-  res.render("products/create");
+  res.render("products/create")
 };
 exports.postCreateProduct = (req, res) => {
   try {
@@ -37,15 +37,16 @@ exports.getDetailProductByApi = async (req, res) => {
 };
 exports.updateProduct = async (req, res) => {
   try {
-    let { name, price, image, category } = req.body;
-    let { id } = req.id;
+    let body = req.body;
+    let { id } = req.params;
+    console.log(body);
     let updateProduct = await productEntity.findByIdAndUpdate(
       id,
       {
-        name,
-        price,
-        image,
-        category: category.id,
+        name:body.name,
+        price:body.price,
+        image:body.image,
+        category:body.category.id,
       },
       {
         returnDocument: "after",
@@ -53,10 +54,24 @@ exports.updateProduct = async (req, res) => {
       },
     );
     if (!updateProduct) {
-      res.json(new ResponseType(null).success());
+      res.json(new ResponseType(null).error());
     }
     res.json(new ResponseType(updateProduct).success());
   } catch (error) {
+    console.log(error);
     res.json(new ResponseType(null).error());
   }
 };
+exports.deleteProduct= async (req,res)=>{
+  try {
+    let {id}=req.params;
+    let deleteProduct=await productEntity.findByIdAndDelete(id).populate("category");
+    if(!deleteProduct){
+     res.json(new ResponseType(null).error());
+    }
+    res.json(new ResponseType(deleteProduct).success());
+  } catch (error) {
+    res.json(new ResponseType(null).error());
+  }
+  
+}

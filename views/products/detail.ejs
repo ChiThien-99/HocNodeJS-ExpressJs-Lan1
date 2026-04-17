@@ -18,6 +18,7 @@
     </header>
     <main>
       <div id="detailProduct">
+        <p id="idProduct" style="display: none;"><%=product.id%></p>
         <h2><%=product.name%></h2>
         <p><%=product.price%></p>
         <img src="<%=product.image%>" alt="<%=product.name%>" /><br />
@@ -31,4 +32,23 @@
       </div>
     </main>
   </body>
+  <script>
+    const idProduct=document.getElementById("idProduct").innerHTML;
+    document.getElementById("btnDeleteProduct").addEventListener("click",()=>{
+      console.log(idProduct);
+    fetch(`http://localhost:3000/products/delete/${idProduct}`,{
+      method:"DELETE",
+      headers:{
+        "Content-type":"application/json;charset=UTF-8",
+      }
+    })
+    .then((res)=>res.json())
+    .then(({code})=>{
+      if(code==200){
+        window.location.href="/products";
+      }
+    });
+    })
+    
+  </script>
 </html>
